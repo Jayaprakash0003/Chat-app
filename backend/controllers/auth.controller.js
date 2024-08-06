@@ -27,7 +27,7 @@ const newUser =new User({
 
 });
 if(newUser){
-   await generateTokenAndCookie(newUser._id,res);
+   generateTokenAndCookie(newUser._id,res);
    await newUser.save();
 
    res.status(201).json({
@@ -69,7 +69,7 @@ export const login = async( req,res)=>{
 export const logout = ( req,res)=>{
     try{
       res.cookie("jwt","",{maxAge:0});
-      res.status(200).json("Logged out successfully");
+      res.status(200).json({message :"Logged out successfully"});
     }catch(error){
       console.log("error in login controller",error.message);
      res.status(500).json({error:"Internal server Error"});
